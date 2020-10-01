@@ -48,7 +48,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        self.size / self.capacity
+        return self.size / self.capacity
 
 
     def fnv1(self, key):
@@ -59,6 +59,7 @@ class HashTable:
         """
 
         # Your code here
+        pass
 
 
     def djb2(self, key):
