@@ -94,21 +94,16 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        index = self.hash_index(key)
+        entry = HashTableEntry(key, value)
+        stor = self.buckets[index]
         self.size += 1
 
-        index = self.hash_index(key)
-
-        node = self.buckets[index]
-
-        if node is None:
-            self.buckets[index] = HashTableEntry(key, value)
-            return
-
-        prev = node
-        while node is not None:
-            prev = node
-            node = node.next
-        prev.next = HashTableEntry(key, value)
+        if stor:
+            self.buckets[index] = entry
+            self.buckets[index].next = stor
+        else:
+            self.buckets[index] = entry
 
 
     def delete(self, key):
