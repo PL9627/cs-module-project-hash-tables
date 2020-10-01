@@ -115,6 +115,11 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        if self.get(key):
+            self.put(key, None)
+            self.size += 1
+        else:
+            print("Can't find the key...")
 
 
     def get(self, key):
@@ -126,6 +131,15 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        index = self.hash_index(key)
+        stor = self.buckets[index]
+
+        while stor:
+            if stor.key == key:
+                return stor.value
+            stor = stor.next
+
+        return None
 
 
     def resize(self, new_capacity):
@@ -136,6 +150,7 @@ class HashTable:
         Implement this.
         """
         # Your code here
+        pass
 
 
 
