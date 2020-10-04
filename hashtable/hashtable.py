@@ -1,3 +1,5 @@
+from linkedlist import LinkedList
+
 class HashTableEntry:
     """
     Linked List hash table key/value pair
@@ -150,7 +152,23 @@ class HashTable:
         Implement this.
         """
         # Your code here
-        pass
+        loadFac = self.get_load_factor()
+
+        if loadFac > 0.7:
+            newHashTable = [None] * new_capacity
+
+            oldHashTable = self.buckets
+
+            self.buckets = newHashTable
+
+            self.capacity = new_capacity
+
+            for element in oldHashTable:
+                curr = element
+
+                while curr is not None:
+                    self.put(curr.key, curr.value)
+                    curr = curr.next
 
 
 
