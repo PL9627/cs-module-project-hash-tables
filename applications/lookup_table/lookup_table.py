@@ -1,4 +1,8 @@
 # Your code here
+import math
+import random
+
+sf_table = {}
 
 
 def slowfun_too_slow(x, y):
@@ -15,6 +19,10 @@ def slowfun(x, y):
     output, but completes quickly instead of taking ages to run.
     """
     # Your code here
+    if (x, y) not in sf_table:
+        sf_table[x, y] = slowfun_too_slow(x, y)
+
+    return sf_table[x, y]
 
 
 
