@@ -1,7 +1,21 @@
 def word_count(s):
     # Your code here
+    wdict = {}
 
+    banned = '" : ; , . - + = / \ | [ ] { } ( ) * ^ &'.split()
 
+    words = s.lower()
+
+    for i in banned:
+        words = words.replace(i, " ")
+
+    for w in words.split():
+        if w not in wdict:
+            wdict[w] = 1
+        else:
+            wdict[w] += 1
+
+    return wdict
 
 if __name__ == "__main__":
     print(word_count(""))
