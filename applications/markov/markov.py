@@ -26,12 +26,36 @@ for first_word in ('the', 'by', 'who'):
         print(first_word, next_word)
  """
 
-def walk_graph(graph, distance = 5, start_node = None):
-    pass
+
+def walk_graph(graph, distance=5, start_node=None):
+    if distance <= 0:
+        return []
+
+    if not start_node:
+        start_node = random.choice(list(graph.keys()))
+
+    weights = np.array(
+        list(markov_graph[start_node].values()),
+        dtype=np.float64
+    )
+    weights /= weights.sum()
+
+    choices = list(markov_graph[start_node].keys())
+    chosen_word = np.random.choice(choices, None, p=weights)
+
+    return [chosen_word] + walk_graph(
+        graph, distance = distance - 1,
+        start_node=chosen_word
+    )
+
+
+for i in range(10):
+    print(' '.join(walk_graph(
+        markov_graph, distance=12
+    )), '\n')
 # TODO: analyze which words can follow other words
 # Your code here
 
 
 # TODO: construct 5 random sentences
 # Your code here
-
